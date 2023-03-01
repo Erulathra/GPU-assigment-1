@@ -19,26 +19,26 @@ Lights::Lights()
 
 void Lights::InitializeLights()
 {
-    sun.color = glm::vec4(1.f);
+    sun.color = glm::vec4(0.f);
     sun.direction = glm::normalize(glm::vec3(-0.5f, -0.5f, -0.5f));
 
     bulb.color = glm::vec4(1.f);
-    bulb.position = glm::vec3(0.f, 20.f, 20.f);
+    bulb.position = glm::vec3(-2.f, 2.f, -5.f);
     bulb.linear = 0.07f;
     bulb.quadratic = 0.017f;
 
-    spotLights[0].color = glm::vec4(1.f);
+    spotLights[0].color = glm::vec4(0.f);
     spotLights[0].position = glm::vec3(-5.f, 4.5f, 18.8f);
     spotLights[0].direction = glm::normalize(glm::vec3(-0.5f, -0.5f, 0.5f));
-    spotLights[0].linear = 0.07f;
-    spotLights[0].quadratic = 0.017f;
+    spotLights[0].linear = 0;
+    spotLights[0].quadratic = 0;
     spotLights[0].cutOff = glm::radians(12.5f);
     spotLights[0].outerCutOff = glm::radians(17.5f);
 
-    spotLights[1].color = glm::vec4(1.f);
+    spotLights[1].color = glm::vec4(0.f);
     spotLights[1].position = glm::vec3(-3.3f, 4.6f, 10.5f);
     spotLights[1].direction = glm::normalize(glm::vec3(0.5f, -0.5f, 0.5f));
-    spotLights[1].linear = 0.07f;
+    spotLights[1].linear = 0;
     spotLights[1].quadratic = 0.017f;
     spotLights[1].cutOff = glm::radians(12.5f);
     spotLights[1].outerCutOff = glm::radians(17.5f);
@@ -119,15 +119,7 @@ Lights::~Lights()
 
 void Lights::DrawGizmos()
 {
-    glm::vec3 sunPosition(0.f, 10.f, 0.f);
-    Arrow::Draw(sunPosition, sunPosition + (2.f * sun.direction), sun.color);
     SphereGizmo::Draw(bulb.position, 1.0f, 24, bulb.color);
-
-    SphereGizmo::Draw(spotLights[0].position, 0.5f, 12, spotLights[0].color);
-    Arrow::Draw(spotLights[0].position, spotLights[0].position + (2.f * spotLights[0].direction), spotLights[0].color);
-
-    SphereGizmo::Draw(spotLights[1].position, 0.5f, 12, spotLights[1].color);
-    Arrow::Draw(spotLights[1].position, spotLights[1].position + (2.f * spotLights[1].direction), spotLights[1].color);
 }
 
 glm::vec3 Lights::DirectionVector(float pitch, float yaw) {
